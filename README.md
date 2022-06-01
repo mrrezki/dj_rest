@@ -1,2 +1,2 @@
 Django REST Framework
-Session Authentication & Permissions
+User & Group Permissions with DjangoModelPermissions
