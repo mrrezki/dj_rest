@@ -2,7 +2,7 @@ from itertools import product
 from math import prod
 from tkinter.messagebox import NO
 from requests import request
-from rest_framework import generics, mixins
+from rest_framework import authentication, generics, mixins, permissions
 from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.decorators import api_view
@@ -15,6 +15,8 @@ from django.shortcuts import get_object_or_404
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    authentication_classes = [authentication.SessionAuthentication]
 
     def perform_create(self, serializer):
         # serializer.save(user=self.request.user)
