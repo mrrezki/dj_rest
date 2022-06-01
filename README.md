@@ -1,2 +1,2 @@
 Django REST Framework
-Custom Permissions
+Token Authentication
