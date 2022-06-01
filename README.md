@@ -1,2 +1,2 @@
 Django REST Framework
-Token Authentication
+Default Django Rest Framework Settings
