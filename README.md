@@ -1,2 +1,2 @@
 Django REST Framework
-Pagination
+A Django Based Search for our Product API
