@@ -1,2 +1,2 @@
 Django REST Framework
-A Django Based Search for our Product API
+Building your Search Engine on Algolia

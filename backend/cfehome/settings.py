@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-a!v+xf+t1ll(3nqxvvmxbfz!6*y00@!d3jtpc+v^t-50#@nyxw"
+SECRET_KEY = os.environ.get("SECRET_KEY_DJANGO")
+# SECRET_KEY = "django-insecure-a!v+xf+t1ll(3nqxvvmxbfz!6*y00@!d3jtpc+v^t-50#@nyxw"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get("DEBUG")) == "1"
 
 ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get("ALLOWED_HOSTS")]
 
 
 # Application definition
@@ -37,8 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third party api services
+    "algoliasearch_django",
+    # third party packages
     "rest_framework",
     "rest_framework.authtoken",
+    # internal apps
     "api",
     "products",
     "search",
@@ -136,4 +144,10 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+}
+
+ALGOLIA = {
+    "APPLICATION_ID": os.environ.get("APPLICATION_ID_ALGOLIA"),
+    "API_KEY": os.environ.get("PRIVATE_KEY_ALGOLIA"),
+    "INDEX_PREFIX": "cfe",
 }
