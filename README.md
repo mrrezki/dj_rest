@@ -1,2 +1,2 @@
 Django REST Framework
-Agolia Search Client for Django
+Unified Design of Serializers & Indices

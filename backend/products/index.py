@@ -12,6 +12,8 @@ class ProductIndex(AlgoliaIndex):
         "price",
         "user",
         "public",
+        "path",
+        "endpoint",
     ]
     settings = {
         "searchableAttributes": ["title", "content"],
