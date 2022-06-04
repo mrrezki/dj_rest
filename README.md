@@ -1,2 +1,2 @@
 Django REST Framework
-Building your Search Engine on Algolia
+Agolia Search Client for Django
