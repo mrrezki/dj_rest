@@ -1,8 +1,8 @@
-const loginForm = document.getElementById("login-form")
+const loginForm = document.getElementById('login-form')
 const baseEndpoint = "http://localhost:8000/api"
-if (loginForm){
+if (loginForm) {
     // handle this login form
-    loginForm.addEventListener("submi", handleLogin)
+    loginForm.addEventListener('submit', handleLogin)
 }
 
 function handleLogin(event) {
@@ -15,19 +15,19 @@ function handleLogin(event) {
     const options = {
         method: "POST",
         headers: {
-            "ContentType": "application/json"
+            "Content-Type": "application/json"
         },
         body: bodyStr
     }
-    fetch(loginEndpoint, options) // requests.posts
+    fetch(loginEndpoint, options) //  Promise
     .then(response=>{
         console.log(response)
         return response.json()
     })
-    .then(x=>{
+    .then(x => {
         console.log(x)
     })
-    .catch(err=>{
-        console.log("err", err)
+    .catch(err=> {
+        console.log('err', err)
     })
 }

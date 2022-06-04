@@ -1,2 +1,2 @@
 Django REST Framework
-Login via JavaScript Client
+Handle Request Blocked by CORS via django cors headers
