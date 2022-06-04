@@ -1,2 +1,2 @@
 Django REST Framework
-JSON WEB Token Authentication with simplejwt
+Login via JavaScript Client
