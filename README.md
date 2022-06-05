@@ -1,2 +1,2 @@
 Django REST Framework
-Using JWT with JS Client
+Search via REST API & JS Client
