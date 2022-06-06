@@ -1,2 +1,2 @@
 Django REST Framework
-Default Django Rest Framework Settings
+Model Serializer Create & Update Methods
