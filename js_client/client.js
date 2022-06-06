@@ -1,3 +1,7 @@
+import dotenv from "dotenv"
+
+dotenv.config()
+
 const contentContainer = document.getElementById('content-container')
 const loginForm = document.getElementById('login-form')
 const searchForm = document.getElementById('search-form')
@@ -151,3 +155,48 @@ function getProductList(){
 
 validateJWTToken()
 // getProductList()
+
+const searchClient = algoliasearch(process.env.APPLICATION_ID_ALGOLIA, process.env.Public_KEY_ALGOLIA);
+
+const search = instantsearch({
+    indexName: 'cfe_Product',
+    searchClient,
+  });
+  
+  search.addWidgets([
+    instantsearch.widgets.searchBox({
+      container: '#searchbox',
+    }),
+  
+      instantsearch.widgets.clearRefinements({
+      container: "#clear-refinements"
+      }),
+  
+  
+    instantsearch.widgets.refinementList({
+        container: "#user-list",
+        attribute: 'user'
+    }),
+    instantsearch.widgets.refinementList({
+      container: "#public-list",
+      attribute: 'public'
+  }),
+  
+  
+    instantsearch.widgets.hits({
+      container: '#hits',
+      templates: {
+          item: `
+              <div>
+                  <div>{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</div>
+                  <div>{{#helpers.highlight}}{ "attribute": "body" }{{/helpers.highlight}}</div>
+                  
+                  <p>{{ user }}</p><p>\${{ price }}
+              
+              
+              </div>`
+      }
+    })
+  ]);
+  
+  search.start();
